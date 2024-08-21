@@ -51,7 +51,7 @@ const playMusic = (track,pause = false)=>{
         // audio.play();
         play.src = "pause.svg";
     }
-    document.querySelector(".songInfo").innerHTML = decodeURI(track); // it display the the song which is currently playing 
+    document.querySelector(".songInfo").innerHTML = decodeURI(track.replaceAll("%20"," ").split("_")[0]); // it display the the song which is currently playing 
     document.querySelector(".songTime").innerHTML = "00:00/00:00"
 }
 
@@ -70,7 +70,7 @@ async function main(){
         songUl.innerHTML = songUl.innerHTML + `<li>
         <img class="invert" src="music.svg" alt="music">
         <div class="info">
-          <div>${song.replaceAll("%20"," ")}</div>
+          <div>${song.replaceAll("%20"," ").split("_")[0]}</div>
           <div>Pratham</div>
         </div>
         <div class="playNow">
