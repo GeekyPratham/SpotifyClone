@@ -67,19 +67,19 @@ async function main(){
     let songUl = document.querySelector(".songList").getElementsByTagName("ul")[0]
 
     for (const song of songs) {
-        songUl.innerHTML = songUl.innerHTML + `<li>
+        songUl.innerHTML += `<li data-song="${song}">
         <img class="invert" src="music.svg" alt="music">
         <div class="info">
-          <div>${song.replaceAll("%20"," ").split("_")[0]}</div>
+          <div>${song.replaceAll("%20", " ").split("_")[0]}</div>
           <div>Pratham</div>
         </div>
         <div class="playNow">
             <span>play now</span>
-            <img class= "invert" src="play.svg" alt="playing">
+            <img class="invert" src="play.svg" alt="playing">
         </div>
-
         </li>`;
     }
+    
 
     //     // play the song
     // var audio = new Audio(songs[3]);
@@ -93,14 +93,22 @@ async function main(){
     // });
 
     // attach an eventlistner to each song
-    Array.from(document.querySelector(".songList").getElementsByTagName("li")).forEach( e => {
-        e.addEventListener("click",element =>{
-            console.log(e.querySelector(".info").firstElementChild.innerHTML.trim());
-            playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim());
-            console.log(e.querySelector(".info").firstElementChild.innerHTML.trim())
-        })
-       
-    })
+        // // Array.from(document.querySelector(".songList").getElementsByTagName("li")).forEach( e => {
+        // //      e.addEventListener("click",element =>{
+        // //          console.log(e.querySelector(".info").firstElementChild.innerHTML.trim());
+        // //          playMusic(e.querySelector(".info").firstElementChild.innerHTML.trim());
+        // //          console.log(e.querySelector(".info").firstElementChild.innerHTML.trim())
+        // //      })
+        
+        // //  })
+
+    Array.from(document.querySelector(".songList").getElementsByTagName("li")).forEach(e => {
+         e.addEventListener("click", element => {
+            const songFile = e.getAttribute("data-song"); // Retrieve the original file name
+             playMusic(songFile);
+         });
+     });
+    
 
     // Array.from(...)-> this convert the html code retruned by getElementByTagName into an array
 
