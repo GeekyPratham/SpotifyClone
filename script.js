@@ -192,6 +192,14 @@ async function main(){
     // })
     
 
+    // add an event listner to volume button
+    volume.addEventListener("click",e=>{
+        volume.src = "mute.svg";
+    })
+
+    
+    
+
 
 }
 
