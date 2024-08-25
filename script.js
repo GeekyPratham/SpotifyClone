@@ -2,8 +2,11 @@ let currentSong = new Audio();// variable
 
 let songs;
 
-async function getSongs(){
-    let a = await fetch("http://127.0.0.1:5500/musicSong/")
+let currFolder;
+
+async function getSongs(folder){
+    currFolder = folder;
+    let a = await fetch(`http://127.0.0.1:5500/${folder}/`)
     //console.log(a);
     let response = await a.text();
     // console.log(response)
@@ -23,7 +26,7 @@ async function getSongs(){
         if(element.href.endsWith(".mp3")){
             // song.push(element.href.split("/musicSong/")[1]);
             
-            let s =element.href.split("/musicSong/")[1];
+            let s =element.href.split(`/${folder}/`)[1];
             //  console.log(s)
             song.push(s)
         }
@@ -45,7 +48,7 @@ function secondToMinutesSeconds(seconds) {
 const playMusic = (track,pause = false)=>{
     // let audio = new Audio("/musicSong/" + track);
   
-    currentSong.src = "/musicSong/" + track;
+    currentSong.src = `/${currFolder}/` + track;
     if(!pause){
         currentSong.play();
         // audio.play();
@@ -61,7 +64,7 @@ async function main(){
 
     // get the list of all the song from getSongs() function
 
-     songs = await getSongs()
+     songs = await getSongs("musicSong/bhaktiSong")
     console.log(songs)
     playMusic(songs[0],true);// default song playing
     let songUl = document.querySelector(".songList").getElementsByTagName("ul")[0]
@@ -207,7 +210,10 @@ async function main(){
         currentSong.volume = parseInt(e.target.value)/100;
     })
 
+    
 
+    // load the playlist whenever clad is clicked
+    
 }
 
 main()
