@@ -131,7 +131,7 @@ async function main(){
     // update timeing of current song
 
     currentSong.addEventListener("timeupdate",()=>{ // timeupdate is for updating time 
-        console.log(currentSong.currentTime,currentSong.duration);
+        // console.log(currentSong.currentTime,currentSong.duration);
         document.querySelector(".songTime").innerHTML = `${secondToMinutesSeconds(currentSong.currentTime)}/${secondToMinutesSeconds(currentSong.duration)}`;
         document.querySelector(".circle").style.left = (currentSong.currentTime/currentSong.duration)*100+"%";
     })
@@ -161,7 +161,7 @@ async function main(){
 
     // add an event listner to prev  song for svg
     prev.addEventListener("click",e=>{
-        // console.log("previous clicked");
+        console.log("previous clicked");
         currentSong.pause();
         let currentSongName = currentSong.src.split("/").slice(-1)[0];
 
@@ -176,7 +176,7 @@ async function main(){
     // add an event listner to next song for svg
     next.addEventListener("click",e=>{
 
-        // console.log("next clicked");
+        console.log("next clicked");
         currentSong.pause();
         let currentSongName = currentSong.src.split("/").slice(-1)[0];
 
@@ -193,12 +193,19 @@ async function main(){
     
 
     // add an event listner to volume button
-    volume.addEventListener("click",e=>{
-        volume.src = "mute.svg";
-    })
+    // volume.addEventListener("click",e=>{
+    //     volume.src = "mute.svg";
+    // })
 
     
-    
+    // add an event linstner to volume bar orange colour
+
+    document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change",e=>{
+        // console.log(e)
+        // console.log(e.target)
+        console.log("setting volue " + e.target.value+"/100")
+        currentSong.volume = parseInt(e.target.value)/100;
+    })
 
 
 }
