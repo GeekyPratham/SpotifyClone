@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="SignUp.css">
+</head>
+<body>
+
+    <div class="signup-container">
+        <div class="form-container">
+            <form id="signUpForm" class="signup-form" action="#">
+                <h1>Create Account</h1>
+                <p>Fill in the form below to create your account</p>
+
+                <!-- Name input -->
+                <input type="text" id="name" name="name" placeholder="Full Name" required autocomplete="name">
+
+                <!-- Email input -->
+                <input type="email" id="email" placeholder="Email" required autocomplete="email">
+
+                <!-- Age input -->
+                <input type="number" id="age" placeholder="Age" min="13" required autocomplete="bday">
+
+                <!-- Password input -->
+                <input type="password" id="password" placeholder="Create Password" required autocomplete="new-password">
+
+                <!-- Confirm Password input -->
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required autocomplete="new-password">
+
+                <!-- Error message for password mismatch -->
+                <p id="error-message" class="error-message"></p>
+
+                <!-- Sign-up button -->
+                <button  type="submit">Sign Up</button>
+
+                <!-- Terms and conditions -->
+                <p class="terms">By signing up, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+            </form>
+        </div>
+    </div>
+
+    <script src="SignUp.js"></script>
+</body>
+</html>

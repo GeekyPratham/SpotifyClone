@@ -7,7 +7,7 @@ let currFolder;
 async function getSongs(folder){
     currFolder = folder;
     let a = await fetch(`http://127.0.0.1:5500/${folder}/`)
-    //console.log(a);
+    // console.log(a);
     let response = await a.text();
     // console.log(response)
 
@@ -19,7 +19,7 @@ async function getSongs(folder){
     let as = div.getElementsByTagName("a")
     //  console.log(as);
     
-    let song = [];// empty array
+    songs = [];// empty array
     for(let idx = 0;idx<as.length;idx++){
         const element = as[idx];
         //  console.log(element)
@@ -28,47 +28,17 @@ async function getSongs(folder){
             
             let s =element.href.split(`/${folder}/`)[1];
             //  console.log(s)
-            song.push(s)
+            songs.push(s)
         }
         
     }
 
     //  console.log(song);
-    return song;
+    // return song;
 
     
-}
-function secondToMinutesSeconds(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = Math.floor(seconds % 60);
-    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-}
-
-
-const playMusic = (track,pause = false)=>{
-    // let audio = new Audio("/musicSong/" + track);
-  
-    currentSong.src = `/${currFolder}/` + track;
-    if(!pause){
-        currentSong.play();
-        // audio.play();
-        play.src = "pause.svg";
-    }
-    document.querySelector(".songInfo").innerHTML = decodeURI(track.replaceAll("%20"," ").split("_")[0]); // it display the the song which is currently playing 
-    document.querySelector(".songTime").innerHTML = "00:00/00:00"
-}
-
-async function main(){
-
-    
-
-    // get the list of all the song from getSongs() function
-
-     songs = await getSongs("musicSong/bhaktiSong")
-    console.log(songs)
-    playMusic(songs[0],true);// default song playing
     let songUl = document.querySelector(".songList").getElementsByTagName("ul")[0]
-
+    songUl.innerHTML = "";
     for (const song of songs) {
         songUl.innerHTML += `<li data-song="${song}">
         <img class="invert" src="music.svg" alt="music">
@@ -111,6 +81,41 @@ async function main(){
              playMusic(songFile);
          });
      });
+    
+
+    
+}
+function secondToMinutesSeconds(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+}
+
+
+const playMusic = (track,pause = false)=>{
+    // let audio = new Audio("/musicSong/" + track);
+  
+    currentSong.src = `/${currFolder}/` + track;
+    if(!pause){
+        currentSong.play();
+        // audio.play();
+        play.src = "pause.svg";
+    }
+    document.querySelector(".songInfo").innerHTML = decodeURI(track.replaceAll("%20"," ").split("_")[0]); // it display the the song which is currently playing 
+    document.querySelector(".songTime").innerHTML = "00:00/00:00"
+}
+
+async function main(){
+
+    
+
+    // get the list of all the song from getSongs() function
+  
+    await getSongs("Frontend/musicSong/bhaktiSong")
+    console.log(songs)
+
+    playMusic(songs[0],true);// default song playing
+
     
 
     // Array.from(...)-> this convert the html code retruned by getElementByTagName into an array
@@ -196,9 +201,11 @@ async function main(){
     
 
     // add an event listner to volume button
-    // volume.addEventListener("click",e=>{
-    //     volume.src = "mute.svg";
-    // })
+    
+     volume.addEventListener("click",e=>{
+         volume.src = "mute.svg";
+         
+     })
 
     
     // add an event linstner to volume bar orange colour
@@ -211,8 +218,20 @@ async function main(){
     })
 
     
+    
+    // load the playlist whenever cardd is clicked
+    console.log(" for card")
+    Array.from(document.getElementsByClassName("card")).forEach(e=>{
+        console.log(e);
+        e.addEventListener("click",async item=>{
+            console.log(item)
+            console.log(item.currentTarget.dataset.folder)
+            await getSongs(`Frontend/musicSong/${item.currentTarget.dataset.folder}`);
 
-    // load the playlist whenever clad is clicked
+
+        })
+    })
+       
     
 }
 
