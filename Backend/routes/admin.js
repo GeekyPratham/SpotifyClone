@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 const adminMiddleware = require("../middleware/admin");
-const { Admin,SongsList } = require("../db/index")
+const { Admin } = require("../db/index")
 
 const jwt = require("jsonwebtoken");
 const { secret } = require("../index")
@@ -74,42 +74,6 @@ router.post('/signin' ,async (req, res) => {
 
     
 
-});
-
-router.post('/courses', adminMiddleware,async (req, res) => {
-    // Implement course creation logic
-    const title = req.body.title;
-    const description = req.body.description;
-    const price = req.body.price;
-    const imageLink = req.body.imageLink;
-    //zod for input validation
-
-    const newCourse =await Course.create({ 
-
-        // if key and value are same then we can do this
-        title,
-        description,
-        price,
-        imageLink
-    })
-    // each time in the mongodb the table is filled in db the unique id is provided so it helps in tracking
-
-    console.log("post")
-    console.log(newCourse)
-    res.json({
-         message: 'Course created successfully', courseId:newCourse._id
-    })
-    
-});
-
-router.get('/courses', adminMiddleware,async (req, res) => {
-    // Implement fetching all courses logic
-    const response =await Course.find({}); // getting all course from database 
-    console .log("get")
-    console.log(response)
-    res.json({
-        course:response
-    })
 });
 
 module.exports = router;
