@@ -139,6 +139,7 @@
 }
 
 .midsegment{
+    display: block;
     height: 55%;
     background-color: #2d2c2c;
     padding: 10px;
@@ -359,6 +360,26 @@
 
 }
 .loginBtn:hover{
+    font-size: 17px;
+    width: 75px;
+}
+
+#logoutBtn{
+    height: 80%;
+    width: 70px;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border-radius: 30px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 5px;
+
+
+}
+#logoutBtn:hover{
     font-size: 17px;
     width: 75px;
 }
