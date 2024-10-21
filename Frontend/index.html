@@ -146,9 +146,11 @@
           </div>
 
           <div class="signButtons">
-            <button class="signupBtn">Sign up</button>
-            <button class="loginBtn">Log in</button>
-          </div>
+            <button class="signupBtn" onclick="window.location.href='signup.html'">Sign up</button>
+            <button class="loginBtn" onclick="window.location.href='signin.html'">Sign in</button>
+            <button id="logoutBtn">Logout</button>
+        </div>
+        
         </div>
 
         <div class="spotifyPlaylist">
@@ -206,7 +208,7 @@
               <p>Hits to boost your day</p>
             </div>
 
-            <div class="card">
+            <div data-folder="oldSong"  class="card">
               <div class="playButton">
                   <figure class="playButton">
                       <svg
@@ -231,7 +233,7 @@
             <p>Hits to boost your day</p>
           </div>
 
-          <div class="card">
+          <div data-folder="BhojpuriSong"  class="card">
             <div class="playButton">
                 <figure class="playButton">
                     <svg

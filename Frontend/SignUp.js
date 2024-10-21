@@ -1,9 +1,8 @@
 document.getElementById("signUpForm").addEventListener("submit", async function (event) {
     event.preventDefault(); // Prevent form submission
 
-    const name = document.getElementById('name').value;
+    const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
-    const age = document.getElementById("age").value;
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
     const errorMessage = document.getElementById("error-message");
@@ -21,31 +20,35 @@ document.getElementById("signUpForm").addEventListener("submit", async function 
 
     // Create the data object to send
     const formData = {
-        name: name,
+        username: username,
         email: email,
-        age: age,
         password: password
     };
 
+    console.log("Submitting data:", formData);  // Log the data being sent
+
     try {
-        // Correct the URL here to match your backend
-        const response = await fetch('http://localhost:4000/signup', { // Update URL here
-            method: 'POST',
+        const response = await fetch('http://127.0.0.1:8080/admin/signup', {
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json'
-            },
+              },
             body: JSON.stringify(formData)
         });
+        
+
+        console.log("Response status:", response.status);  // Log response status
 
         if (response.ok) {
             const data = await response.json();
             alert('Signup successful!');
             console.log(data); // Handle the response from the backend
+            window.location.href = "./signin.html"
         } else {
             throw new Error('Signup failed!');
         }
     } catch (error) {
-        console.error(error);
+        console.error("Error during signup:", error);
         alert('There was an error with the signup.');
     }
 });
