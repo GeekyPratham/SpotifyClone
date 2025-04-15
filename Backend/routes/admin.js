@@ -17,7 +17,16 @@ router.post('/signup', async (req, res) => {
         if (!username || !email || !password) {
             return res.status(400).json({ msg: 'Please provide all required fields' });
         }
-
+        const admin = await Admin.find({
+        
+            email:email,
+            password:password
+        })
+        
+        if(admin.length>0){
+            console.log("User alrady exist.");
+            return res.status(411).json({msg:"User alrady exist."})
+        }
         // Create the admin user
         await Admin.create({ username, email, password });
         

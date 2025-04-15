@@ -28,7 +28,7 @@ document.getElementById("signUpForm").addEventListener("submit", async function 
     console.log("Submitting data:", formData);  // Log the data being sent
 
     try {
-        const response = await fetch('https://spotifyclone-ylrx.onrender.com/admin/signup', {
+        const response = await fetch('http://localhost:8080/admin/signup', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -49,6 +49,6 @@ document.getElementById("signUpForm").addEventListener("submit", async function 
         }
     } catch (error) {
         console.error("Error during signup:", error);
-        alert('There was an error with the signup.');
+        alert('user already exist!');
     }
 });

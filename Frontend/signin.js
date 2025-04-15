@@ -4,6 +4,8 @@ document.getElementById('signInForm').addEventListener('submit', async function(
     // Get form data
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+    console.log(email);
+    console.log(password);
 
     // Create the data object to send
     const formData = {
@@ -12,7 +14,7 @@ document.getElementById('signInForm').addEventListener('submit', async function(
     };
 
     try {
-        const response = await fetch('https://spotifyclone-ylrx.onrender.com/admin/signin', {
+        const response = await fetch('http://localhost:8080/admin/signin', {
             // https://spotifyclone-ylrx.onrender.com
             method: "POST", // Ensure POST method is used
             headers: {
