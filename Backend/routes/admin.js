@@ -4,7 +4,8 @@ const adminMiddleware = require("../middleware/admin");
 const { Admin } = require("../db/index")
 
 const jwt = require("jsonwebtoken");
-const { secret } = require("../index")
+const secret = process.env.secret;
+console.log(secret);
 //  console.log("secret: ", secret);
 
 router.post('/signup', async (req, res) => {

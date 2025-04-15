@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { secret } = require("../index")
+const secret = process.env.secret;
 
 
 // Middleware for handling auth
