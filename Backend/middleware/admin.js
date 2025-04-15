@@ -1,4 +1,4 @@
-import { verify } from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 const secret = process.env.secret;
 
 
@@ -11,7 +11,7 @@ function adminMiddleware(req, res, next) {
     const words = token.split(" ");
     const jwtToken = words[1];
 
-    const decodedValue = verify(jwtToken,secret);
+    const decodedValue = jwt.verify(jwtToken,secret);
 
     if(decodedValue.username){
         next();
@@ -24,4 +24,4 @@ function adminMiddleware(req, res, next) {
 
 }
 
-export default adminMiddleware;
+module.exports = adminMiddleware;
