@@ -20,7 +20,7 @@ router.post('/signup', async (req, res) => {
         const admin = await Admin.find({
         
             email:email,
-            password:password
+           
         })
         
         if(admin.length>0){

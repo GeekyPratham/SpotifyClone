@@ -16,6 +16,7 @@ document.getElementById('signInForm').addEventListener('submit', async function(
     try {
         const response = await fetch('http://localhost:8080/admin/signin', {
             // https://spotifyclone-ylrx.onrender.com
+            // ://localhost:8080
             method: "POST", // Ensure POST method is used
             headers: {
                 'Content-Type': 'application/json' // Sending JSON data

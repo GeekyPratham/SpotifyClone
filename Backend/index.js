@@ -11,7 +11,15 @@ const app = express();
 const PORT = 8080;
 
 // Use CORS middleware at the top, so it applies to all routes
-app.use(cors());
+app.use(cors())
+// const cors = require("cors");
+
+app.use(cors({
+    origin: 'http://127.0.0.1:5500', // allow this origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
+;
 
 
 // Middleware for parsing request bodies
