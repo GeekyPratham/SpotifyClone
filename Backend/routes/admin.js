@@ -5,7 +5,7 @@ const { Admin } = require("../db/index")
 
 const jwt = require("jsonwebtoken");
 const secret = process.env.secret;
-console.log(secret);
+// console.log(secret);
 //  console.log("secret: ", secret);
 
 router.post('/signup', async (req, res) => {
