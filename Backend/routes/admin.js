@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-const adminMiddleware = require("../middleware/admin");
+
 const { Admin } = require("../db/index")
 
 const jwt = require("jsonwebtoken");
@@ -13,7 +13,7 @@ router.post('/signup', async (req, res) => {
         const username = req.body.username;
         const email = req.body.email;
         const password = req.body.password;
-
+        console.log(`${username}, ${email},${password}`);
         if (!username || !email || !password) {
             return res.status(400).json({ msg: 'Please provide all required fields' });
         }
@@ -32,9 +32,9 @@ router.post('/signup', async (req, res) => {
 
 
 
-router.post('/signin' ,async (req, res) => {
+router.post('/signin',async (req, res) => {
     // Implement admin signup logic
-
+    console.log("signin");
     const email = req.body.email;
     const password = req.body.password;
 
