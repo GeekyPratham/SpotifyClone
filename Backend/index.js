@@ -15,7 +15,7 @@ app.use(cors())
 // const cors = require("cors");
 
 app.use(cors({
-    origin: 'http://127.0.0.1:5500', // allow this origin
+    origin: 'https://spotifyclone-frontend-rryp.onrender.com', // allow this origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
