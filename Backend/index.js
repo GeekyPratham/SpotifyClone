@@ -14,12 +14,8 @@ const PORT = 8080;
 app.use(cors())
 // const cors = require("cors");
 
-app.use(cors({
-    origin: 'https://spotifyclone-frontend-rryp.onrender.com', // allow this origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
-}));
-;
+app.use(cors());
+
 
 
 // Middleware for parsing request bodies
